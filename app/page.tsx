@@ -1232,6 +1232,20 @@ export default function Home() {
           )}
         </AnimatePresence>
       </main>
+
+      <footer className="border-t border-stone-200 bg-white py-8 mt-12">
+        <div className="max-w-5xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-stone-500">
+          <div className="flex items-center gap-2">
+            <span className="font-bold text-stone-700">AI XHS Recreator</span>
+            <span>© 2026</span>
+          </div>
+          <div className="flex items-center gap-6">
+            <a href="/terms" className="hover:text-rose-500 transition-colors">用户协议</a>
+            <a href="/privacy" className="hover:text-rose-500 transition-colors">隐私政策</a>
+            <a href="/contact" className="hover:text-rose-500 transition-colors">联系我们</a>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
