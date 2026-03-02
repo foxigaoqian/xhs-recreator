@@ -1,0 +1,5 @@
+{
+  "name": "AI XHS Recreator",
+  "description": "An AI-powered tool to recreate and remix Xiaohongshu (Little Red Book) notes using Gemini.",
+  "requestFramePermissions": []
+}
