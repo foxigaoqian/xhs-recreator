@@ -31,8 +31,8 @@ export default function Home() {
   const [showSettings, setShowSettings] = useState(false);
   const [customApiKey, setCustomApiKey] = useState('');
   const [customBaseUrl, setCustomBaseUrl] = useState('');
-  const [customModel, setCustomModel] = useState('gemini-2.0-flash'); // Default text model
-  const [customImageModel, setCustomImageModel] = useState('gemini-3-pro-image-preview'); // Default image model
+  const [customModel, setCustomModel] = useState('gemini-3-flash-preview'); // Default text model
+  const [customImageModel, setCustomImageModel] = useState('gemini-3.1-flash-image-preview'); // Default image model
 
   const [loadingStep, setLoadingStep] = useState<'idle' | 'scraping' | 'generating_text' | 'generating_image'>('idle');
   const [error, setError] = useState<string | null>(null);
@@ -66,8 +66,8 @@ export default function Home() {
   const resetSettings = () => {
     setCustomApiKey('');
     setCustomBaseUrl('');
-    setCustomModel('gemini-2.0-flash');
-    setCustomImageModel('gemini-3-pro-image-preview');
+    setCustomModel('gemini-3-flash-preview');
+    setCustomImageModel('gemini-3.1-flash-image-preview');
     localStorage.removeItem('xhs_custom_api_key');
     localStorage.removeItem('xhs_custom_base_url');
     localStorage.removeItem('xhs_custom_model');
@@ -288,7 +288,7 @@ export default function Home() {
 
     for (let i = 0; i < retries; i++) {
         try {
-            const modelToUse = customImageModel || 'gemini-3-pro-image-preview';
+            const modelToUse = customImageModel || 'gemini-3.1-flash-image-preview';
             console.log(`[Image Gen] Attempt ${i+1}/${retries} using model: ${modelToUse}`);
             
             const payload = {
@@ -389,7 +389,7 @@ export default function Home() {
     setGeneratedResult(null);
     setGeneratedImageUrl(null);
 
-    // Check if API key is selected for paid models (needed for gemini-3-pro-image-preview)
+    // Check if API key is selected for paid models (needed for gemini-3.1-flash-image-preview)
     // Only check if we are NOT using a custom key
     if (!customApiKey) {
         try {
@@ -480,7 +480,7 @@ export default function Home() {
       };
 
       const data = await callGeminiAPI(
-          customModel || 'gemini-2.0-flash', 
+          customModel || 'gemini-3-flash-preview', 
           payload, 
           customApiKey, 
           customBaseUrl
@@ -749,12 +749,12 @@ export default function Home() {
                       type="text" 
                       value={customModel}
                       onChange={(e) => setCustomModel(e.target.value)}
-                      placeholder="gemini-2.0-flash"
+                      placeholder="gemini-3-flash-preview"
                       className="w-full p-3 pr-10 bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500"
                     />
-                    {customModel !== 'gemini-2.0-flash' && (
+                    {customModel !== 'gemini-3-flash-preview' && (
                       <button
-                        onClick={() => setCustomModel('gemini-2.0-flash')}
+                        onClick={() => setCustomModel('gemini-3-flash-preview')}
                         className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-600 p-1"
                         title="恢复默认"
                       >
@@ -763,7 +763,7 @@ export default function Home() {
                     )}
                   </div>
                   <p className="text-xs text-stone-400 mt-1">
-                    如果中转站不支持 gemini-2.0-flash，可尝试 gemini-1.5-flash 或 gemini-pro。
+                    如果中转站不支持 gemini-3-flash-preview，可尝试 gemini-1.5-flash 或 gemini-pro。
                   </p>
                 </div>
                 <div>
@@ -775,12 +775,12 @@ export default function Home() {
                       type="text" 
                       value={customImageModel}
                       onChange={(e) => setCustomImageModel(e.target.value)}
-                      placeholder="gemini-3-pro-image-preview"
+                      placeholder="gemini-3.1-flash-image-preview"
                       className="w-full p-3 pr-10 bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500/20 focus:border-rose-500"
                     />
-                    {customImageModel !== 'gemini-3-pro-image-preview' && (
+                    {customImageModel !== 'gemini-3.1-flash-image-preview' && (
                       <button
-                        onClick={() => setCustomImageModel('gemini-3-pro-image-preview')}
+                        onClick={() => setCustomImageModel('gemini-3.1-flash-image-preview')}
                         className="absolute right-3 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-600 p-1"
                         title="恢复默认"
                       >
@@ -789,7 +789,7 @@ export default function Home() {
                     )}
                   </div>
                   <p className="text-xs text-stone-400 mt-1">
-                    默认 gemini-3-pro-image-preview。也可尝试 gemini-2.5-flash-image。
+                    默认 gemini-3.1-flash-image-preview。也可尝试 gemini-2.5-flash-image。
                   </p>
                 </div>
               </div>
